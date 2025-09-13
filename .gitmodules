@@ -1,0 +1,3 @@
+[submodule "NVim-Config"]
+	path = NVim-Config
+	url = git@github.com:timmy-quinn/NVim-Config.git
