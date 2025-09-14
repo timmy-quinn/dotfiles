@@ -46,3 +46,4 @@ git config --global alias.st status
 git config --global alias.cm "commit -m"
 git config --global alias.pl pull
 git config --global alias.ph push
+git config --global alias.br branch 
