@@ -1,0 +1,248 @@
+ls
+clear
+find . -name "test"
+find "test"
+fing . -name "test"
+find . -name "test.file"
+clear
+ls
+clear
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+config nu
+cd ~/dotfiles
+ls
+cd ~
+cd dotfiles
+ls
+clear
+nvim
+config nu
+clear
+ls
+clear
+lsj
+ls
+clear
+ls
+cd MemMapGenerator\
+ls
+clear
+ls
+nv
+clear
+ls
+cd ..
+ls
+nvim hi_core
+cd hi_core
+ls
+clear
+ls
+git add .
+git st
+git reset
+cd HI_Protocol\
+git add .
+git st
+git cm "ammend example function"
+clear
+ls
+git st
+git ph
+cd ..
+ls
+nvim .vscode
+q
+cd .vscode
+ls
+rm tasks.json
+ls
+cd ..
+git add . 
+git cm "removed tasks.json"
+git reset
+git st
+git log
+git reset HEAD~1
+git st
+git add .vscode/
+ls
+git st
+git cm "removed tasks.json"
+git ph
+clear
+git st
+ls
+clear
+ls
+nu config
+config nu
+q
+find . -name "test.file"
+clear
+ls
+find
+find . -name "test"
+ls
+clear
+ls
+find . -name "test"
+find "test"
+clear
+ls
+clear
+ls
+ls -a
+clear
+cd HI_
+cd HI_Protocol\
+.\unit_test_run.bat
+git st
+git add .
+git st
+git cm "used macro to determine bytesize of modbus registers"
+git ph
+clear
+git st
+git br
+clear
+git pl
+clear
+git st
+.\unit_test_run.bat
+clear
+.\unit_test_run.bat
+clear
+git st
+git add . 
+git br
+git cm "fixed incorrect macro names, replaced upper byte, lower byte macros with functions"
+ls
+git ph
+git pl
+ls
+clear
+ls
+nvim
+clear
+grep
+find
+find . -name "test"
+clear
+ls
+clear
+ls
+cd hi_core
+git st
+.\unit_test_run.bat
+cd HI_Protocol\
+.\unit_test_run.bat
+clear
+ls
+clear
+.\unit_test_run.bat
+git st
+git add modbusCommon.h
+git add . 
+git st
+git cm "eModbusExceptionCode fixes" -m "Used static asserts for compile-time validation of enum values" -m "improved modbusCommon_doesExceptionNeedRsp to account for the fact that modbus exception codes are non contiguous"
+git st
+clear
+ls
+git st
+git ph
+git pl
+git ph
+ls
+cd lib
+ls
+cd scr
+cd src
+ls
+cd modbus
+ls
+cd ../../
+cd ../
+ls
+clear
+clear
+ls
+clear
+cd ../
+\cd ../
+ls
+cd ../
+cd MemMapGenerator\
+ls
+cd ~/dotfiles/
+ls
+nvim
+nvim config_schema.py
+ls
+clear
+ls
+clear
+nvim nushell\config.nu
+ls
+clear
+nvim 
+ls
+clear
+ls
+clear
+nvim
+clear
+ls
+clear
+ls
+cd hi_core
+ls
+clear
+ls
+clear
+cd ..
+ls
+nvim MemMapGenerator\
+clear
+ls
+cd MemMapGenerator\
+ls
+nvim config_schema
+ls
+clear
+cd ../
+ls
+cd ../
+ls
+cd C:\Proj\
+cd MemMapGenerator\
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+.\.venv\Scripts\activate
+ls
+python main.py test.yaml
+python main.py "test.yaml"
+.venv\Scripts\activate
+ls
+cd ~/dot
+cd ~/dotfiles/
+nvim
+q
+clear
