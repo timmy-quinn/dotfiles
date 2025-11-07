@@ -10,7 +10,8 @@
 $wingetPackages = @(
     "Starship.Starship",
     "Chocolatey.Chocolatey --accept-source-agreements --accept-package-agreements",
-    "DEVCOM.Lua"
+    "DEVCOM.Lua", 
+    "GnuWin32.Make"
 )
 
 $chocoPackages = @(
@@ -20,21 +21,31 @@ $chocoPackages = @(
     "nodejs.install" # used by nvim Mason/Lsp
 )
 
+$scoopPackages = @(
+    "tree-sitter"
+)
+
+# Create aliases for your dotfile configs. This ensures t
 $symlinks = @{
     $PROFILE.CurrentUserAllHosts = ".\Profile.ps1"
     "$HOME\AppData\Local\nvim" = ".\NVim-Config"
     "$HOME\.wezterm.lua" = ".\wezterm\.wezterm.lua"
-    "$HOME\AppData\Roaming\nushell" = ".\nushell"
+    # "$HOME\AppData\Roaming\nushell" = ".\nushell"
 }
 
 Set-Location $PSScriptRoot
 [Environment]::CurrentDirectory = $PSScriptRoot
 
-Write-Host "Installing packages..."
+Write-Host "Installing winget packages..."
 foreach($package in $wingetPackages) {
     winget install -e --id $package
 }
 
+Write-Host "Installing scoop..."
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+Write-Host "Refreshing environment..."
 # Refresh environment to ensure choco is available
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
@@ -42,9 +53,9 @@ foreach($package in $chocoPackages) {
     choco install -y $package
 }
 
-$nu_theme_dir = "$HOME\nushell_theme"
-
-git clone https://github.com/catppuccin/nushell.git $nu_theme_dir
+foreach($package in $scoopPackages) {
+    scoop install $package
+}
 
 
 Write-Host "Creating Symbolic Links..."
