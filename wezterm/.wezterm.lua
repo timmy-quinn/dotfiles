@@ -1,6 +1,7 @@
 local wezterm = require('wezterm')
 local act = wezterm.action
 
+
 local function isViProcess(pane)
     -- get_foreground_process_name On Linux, macOS and Windows,
     -- the process can be queried to determine this path. Other operating systems
@@ -35,7 +36,8 @@ end)
 
 local my_launch_menu = {}
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-    local my_default_prog = { 'powershell.exe' }
+    -- local my_default_prog = { 'powershell.exe' }
+    local my_default_prog = {'C:\\msys64\\usr\\bin'}
     table.insert(my_launch_menu, {
         label = "MSYS UCRT64",
         args = { "cmd.exe ", "/k", "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -ucrt64 -shell bash" },
@@ -43,16 +45,34 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     -- config.default_prog = { "pwsh", "-nol" }
 end
 
+
+
 return {
     color_scheme = "Catppuccin Frappe",
-    default_prog = my_default_prog,
+    -- default_prog = my_default_prog,
     window_decorations = "RESIZE",
     font_size = 10.0,
+    font = wezterm.font_with_fallback {
+        "JetBrains Mono",
+        "Fira Code",
+        "Cascadia Code PL",
+    },
+
+    -- underline_thickness = "2px",
+    -- underline_position = "-3px",
+
     -- dpi = 192.0,
-    default_cwd = "C:/proj/",
     -- default_prog = { 'powershell.exe' , "-nol"},
     default_prog = { "pwsh", "-NoLogo" },
-    -- default_prog = {"nu"},
+    default_cwd = "/c/Proj/",
+    
+    -- To try to limit cpu usage
+	animation_fps = 10,
+	cursor_blink_rate = 1000,
+    
+    -- default_prog = {"C:\\cygwin64\\bin\\bash.exe", "--login", "-i"},
+    -- default_cwd = "/cygdrive/c/Proj/",
+
     leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 },
     front_end = "WebGpu",
     webgpu_power_preference = "HighPerformance",

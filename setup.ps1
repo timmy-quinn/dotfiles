@@ -1,5 +1,22 @@
 #Requires -RunAsAdministrator
 
+Set-Location $PSScriptRoot
+[Environment]::CurrentDirectory = $PSScriptRoot
+
+
+# Setup the Powershell profile
+# We create a profile that loads our actual profile, which lives in our dotfile repo 
+$customProfile = "$PSScriptRoot\Profile.ps1"
+New-Item -ItemType File -Path $customProfile -Force | Out-Null
+New-Item -ItemType File -Path $PROFILE -Force | Out-Null
+$loader = @"
+# Bootstrap: load real profile from custom path
+# if (Test-Path '$customProfile') {
+#     . '$customProfile'
+# }
+# "@
+Set-Content -Path $PROFILE -Value $loader -Encoding UTF8
+
 
 # When adding packages to this list, be careful
 # We call winget -e --id
@@ -18,7 +35,8 @@ $chocoPackages = @(
     "neovim",
     "wezterm",
     "ripgrep", # used by nvim Telescope
-    "nodejs.install" # used by nvim Mason/Lsp
+    "nodejs.install", # used by nvim Mason/Lsp
+    "posh-git"        # git autocomplete for powershell and other stuff
 )
 
 $scoopPackages = @(
@@ -27,7 +45,7 @@ $scoopPackages = @(
 
 # Create aliases for your dotfile configs. This ensures t
 $symlinks = @{
-    $PROFILE.CurrentUserAllHosts = ".\Profile.ps1"
+    # $PROFILE.CurrentUserAllHosts = ".\Profile.ps1"
     "$HOME\AppData\Local\nvim" = ".\NVim-Config"
     "$HOME\.wezterm.lua" = ".\wezterm\.wezterm.lua"
     # "$HOME\AppData\Roaming\nushell" = ".\nushell"
@@ -41,9 +59,9 @@ foreach($package in $wingetPackages) {
     winget install -e --id $package
 }
 
-Write-Host "Installing scoop..."
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+# Write-Host "Installing scoop..."
+# Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+# Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 Write-Host "Refreshing environment..."
 # Refresh environment to ensure choco is available
@@ -68,6 +86,7 @@ foreach ($symlink in $symlinks.GetEnumerator()) {
 [System.Environment]::SetEnvironmentVariable('WEZTERM_CONFIG_FILE', "$PSScriptRoot\wezterm\.wezterm.lua", [System.EnvironmentVariableTarget]::User)
 
 
+
 # Configure git variables
 git config --global alias.ch checkout
 git config --global alias.st status
@@ -75,3 +94,6 @@ git config --global alias.cm "commit -m"
 git config --global alias.pl pull
 git config --global alias.ph push
 git config --global alias.br branch 
+
+
+Add-PoshGitToProfile -AllProfiles
