@@ -12,7 +12,8 @@ APT_PACKAGES=(
     "neovim"
     "ripgrep"
     "zsh"
-    "build-essentials"
+    "npm"
+    "build-essential"
 )
 
 echo "Updating package lists..."
@@ -31,21 +32,25 @@ else
     echo "Some packages failed to install. Check errors above."
 fi
 
+# TODO: for some reason this doesn't seem to work
+git config --global alias.ch "checkout" 
+git config --global alias.st "status"
+git config --global alias.ph "push"
+git config --global alias.br "branch"
+git config --global alias.cm "commit -m"
 
-# Download and install nvm:
+
+# Download and install nvm and node.js:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
+\. "$HOME/.nvm/nvm.sh" # in lieu of restarting the shell
+nvm install 24 # install node.js
 
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
 
-# Download and install Node.js:
-nvm install 24
-
-# Verify the Node.js version:
-# node -v # Should print "v24.19.0".
-
-# Verify npm version:
-# npm -v # Should print "11.17.0".
-
+# setup symbolic links for local config files
 ln ./NVim-Config ~/.config/nvim/
 ln ./wezterm/.wezterm.lua ~/.config/wezterm/wezterm.lua
+
+# configure wezterm to be the default 
+touch ~/.config/ubuntu-xdg-terminals.list
+echo "org.wezfurlong.wezterm.desktop" > ~/.config/ubuntu-xdg-terminals.list 
+
