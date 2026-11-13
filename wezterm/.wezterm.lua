@@ -34,15 +34,12 @@ wezterm.on('ActivatePaneDirection-down', function(window, pane)
     conditionalActivatePane(window, pane, 'Down', 'j')
 end)
 
-local my_launch_menu = {}
+local my_default_prog = {}
+
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-    -- local my_default_prog = { 'powershell.exe' }
-    local my_default_prog = {'C:\\msys64\\usr\\bin'}
-    table.insert(my_launch_menu, {
-        label = "MSYS UCRT64",
-        args = { "cmd.exe ", "/k", "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -ucrt64 -shell bash" },
-    })
-    -- config.default_prog = { "pwsh", "-nol" }
+    my_default_prog = { "pwsh", "-NoLogo" }
+else
+    my_default_prog = {"zsh"}
 end
 
 
@@ -72,19 +69,15 @@ return {
 
     -- dpi = 192.0,
     -- default_prog = { 'powershell.exe' , "-nol"},
-    default_prog = { "pwsh", "-NoLogo" },
     default_cwd = "/c/Proj/",
     
     -- To try to limit cpu usage
 	animation_fps = 10,
 	cursor_blink_rate = 1000,
-    
-    -- default_prog = {"C:\\cygwin64\\bin\\bash.exe", "--login", "-i"},
-    -- default_cwd = "/cygdrive/c/Proj/",
-
     leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 },
-    front_end = "WebGpu",
-    webgpu_power_preference = "HighPerformance",
+    -- front_end = "WebGpu",
+    -- front_end = "OpenGL",
+    -- webgpu_power_preference = "HighPerformance",
     harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
     -- hide_tab_bar_if_only_one_tab = true,
     keys = {
