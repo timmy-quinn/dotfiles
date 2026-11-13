@@ -48,7 +48,16 @@ end
 
 
 return {
-    color_scheme = "Catppuccin Frappe",
+    -- color_scheme = "Nord (base16)",
+    -- color_scheme = "Tomorrow Night Bright",
+    -- color_scheme = "Modus Vivendi (Gogh)",
+    -- color_scheme = "Builtin Solarized Dark",
+    -- color_scheme = "Kimber (base16)",
+    -- color_scheme = "kurokula",
+    color_scheme = "Kanagawa (Gogh)",
+    -- color_scheme = "Kasugano (terminal.sexy)",
+    -- color_scheme = "kanagawabones",
+    -- color_scheme = "Tokyo Night",
     -- default_prog = my_default_prog,
     window_decorations = "RESIZE",
     font_size = 10.0,

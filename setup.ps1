@@ -9,13 +9,13 @@ Set-Location $PSScriptRoot
 $customProfile = "$PSScriptRoot\Profile.ps1"
 New-Item -ItemType File -Path $customProfile -Force | Out-Null
 New-Item -ItemType File -Path $PROFILE -Force | Out-Null
-$loader = @"
-# Bootstrap: load real profile from custom path
-# if (Test-Path '$customProfile') {
-#     . '$customProfile'
-# }
-# "@
-Set-Content -Path $PROFILE -Value $loader -Encoding UTF8
+# $loader = @"
+# # Bootstrap: load real profile from custom path
+# # if (Test-Path '$customProfile') {
+# #     . '$customProfile'
+# # }
+# # "@
+# Set-Content -Path $PROFILE -Value $loader -Encoding UTF8
 
 
 # When adding packages to this list, be careful
